@@ -1,0 +1,45 @@
+<ion-view title="รายวิชาทั้งหมด">
+    <ion-nav-buttons>
+        <button class="button button-icon icon ion-ios-plus-outline" ng-click="goAdd()">
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="secondary">
+        <div ng-show = "datas.length">
+            <button class="button button-icon icon ion-ios-search" ng-click="showFilterBar()"></button>
+        </div>
+        <button class="button button-icon ion-android-more-vertical" ng-click="popCourse.show($event)">
+        </button>
+    </ion-nav-buttons>
+    <ion-content padding="false" class="has-header" overflow-scroll="false">
+        <div class = "card no-results" ng-hide="datas.length">
+            <div class="item item-divider">
+                 <h2"><b>No Course</b></h2>
+            </div>
+            <div class="item item-text-wrap">
+                <h2 style="padding-left: 10px">กรุณาเพิ่มรายวิชาก่อนเช็คชื่อเข้าชั้นเรียน</h2>
+                <br/>
+                <h2 style="padding-left: 10px">คลิกที่ปุ่ม 
+                    <i class="icon ion-ios-plus-outline custom-icon"></i> เพื่อเพิ่มรายวิชา
+                </h2> 
+            </div>
+        </div>
+
+        <ion-refresher pulling-icon="ion-arrow-down-b" on-refresh="refreshItems()">
+        </ion-refresher>   
+
+        <ion-list>
+            <ion-item class = "item item-thumbnail-left card item-text-wrap" ng-click="click(data)" ng-repeat="data in datas">
+                <img ng-src="{{data.pic}}"/>
+                <h2>{{data.courseid}}</h2>
+                <h2>{{data.coursename}}</h2>
+                <p>ชื่อย่อ: {{data.alias}}</p>
+                <p>กลุ่ม: {{data.section}}</p>
+                <ion-option-button class="button-energized" ng-click="editCourse(data)">Edit</ion-option-button>
+                <ion-option-button class="button-assertive" ng-click="deleteCourse(data)">Delete</ion-option-button>
+            </ion-item>
+        </ion-list>
+<!--         <div class = "card" ng-if="datas === undefined" class="no-results">
+            <p style="padding: 10px">No Courses Here</p>
+        </div> -->
+    </ion-content>
+</ion-view>

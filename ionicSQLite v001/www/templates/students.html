@@ -1,0 +1,52 @@
+<ion-view view-title="รายชื่อนักศึกษา">
+	<ion-nav-buttons side="left">
+ 		<button class="button button-clear" ng-click="goBack()"><i class="icon ion-arrow-left-c" ></i></button>
+	</ion-nav-buttons>
+	<ion-nav-buttons side="right">
+<!--         <div ng-show = "datas.length">
+            <button class="button button-icon icon ion-ios-search" ng-click="showFilterBar()"></button>
+        </div> -->
+        <button class="button icon-left ion-plus-round" ng-click="goAdd()">
+        </button>
+        <button class="button button-icon ion-android-more-vertical" ng-click="popStudent.show($event)">
+        </button>
+  	</ion-nav-buttons>
+
+	<ion-content padding="false" overflow-scroll="false">
+		<ion-refresher pulling-icon="ion-arrow-down-b" on-refresh="refreshItems()"></ion-refresher> 
+		<div class = "card no-results" ng-hide="datas.length">
+<!-- 			<p style="padding: 10px">No Student Here.</p>
+            <div class="container">
+                <h4><b>John Doe</b></h4> 
+                <p>Architect Engineer</p> 
+            </div> -->
+            <div class="item item-divider">
+				 <h2"><b>No Student</b></h2>
+			</div>
+  			<div class="item item-text-wrap">
+    			<h3 style="padding-left: 10px">กรุณาเพิ่มรายชื่อนักศึกษาก่อนเช็คชื่อเข้าชั้นเรียน</h3>
+    			<br/>
+    			<h3 style="padding-left: 10px">คลิกที่ปุ่ม 
+					<i class="icon ion-plus-round custom-icon1"></i> เพื่อเพิ่มรายชื่อนักศึกษา
+    			</h3> 
+  			</div>
+		</div>
+		<ion-list>
+			<ion-item class="item-avatar-left" ng-repeat="data in datas" type="item-text-wrap">
+				
+				<img ng-if="data.stdgender === 'นางสาว'" src="img/girl.png">
+				<img ng-if="data.stdgender === 'นาย'" src="img/boy.png">
+				<!-- <img src="img/contact02.ico"> -->
+				<p>รหัส {{data.stdid}}</p>
+				<p>{{data.stdgender}} {{data.stdname}} {{data.stdlastname}}</p>
+				<ion-option-button class="button-energized" ng-click="editStudent(data)">Edit</ion-option-button>
+				<ion-option-button class="button-assertive" ng-click="deleteStudent(data)">Delete</ion-option-button>
+			</ion-item>
+		</ion-list>
+		
+
+
+<!-- 		 <div class = "card" ng-if="datas === undefined" class="no-results">
+         <p style="padding: 10px">No Students Here</p> -->
+	</ion-content>
+</ion-view>

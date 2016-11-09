@@ -1,0 +1,49 @@
+<ion-view view-title="คาบเรียน">
+	<ion-nav-buttons side="left">
+	 	<button class="button button-clear" ng-click="goBack()"><i class="icon ion-arrow-left-c" ></i></button>
+	</ion-nav-buttons>
+	<ion-nav-buttons side="right">
+<!--         <div ng-show = "dataClass.length">
+            <button class="button button-icon icon ion-ios-search" ng-click="showFilterBarClass()"></button>
+        </div> -->
+        <button class="button icon-left ion-plus-round" ng-click="showDatePicker()">
+        </button>
+        <button class="button button-icon ion-android-more-vertical" ng-click="popClass.show($event)">
+        </button>
+  	</ion-nav-buttons>
+
+	<!-- <ion-content class="padding"> -->
+	<ion-content padding="false" overflow-scroll="false">	
+    <ion-refresher pulling-icon="ion-arrow-down-b" on-refresh="refreshItemsClass()"></ion-refresher> 
+    <div class = "card no-results" ng-hide="dataClass.length">
+      <div class="item item-divider">
+         <h2"><b>No Class Period</b></h2>
+      </div>
+        <div class="item item-text-wrap">
+          <h3 style="padding-left: 10px">กรุณาเพิ่มคาบเรียนเพื่อเช็คชื่อเข้าชั้นเรียน</h3>
+          <br/>
+          <h3 style="padding-left: 10px">คลิกที่ปุ่ม 
+          <i class="icon ion-plus-round custom-icon1"></i> เพื่อเพิ่ม วัน-เวลา เรียน
+          </h3> 
+        </div>
+    </div>
+
+    <!-- <button class = "button" ng-click="scanBarcode()">Scan</button> -->
+    
+    <ion-list>
+      <ion-item class="item-avatar-left" ng-repeat="data in dataClass.reverse() | orderBy: sortClass : true" ng-click="click(data)">
+        <img src="img/time.png">
+        <p>{{data.datestime | amDateFormat:'dddd, Do MMMM YYYY' }}</p>
+        <p>เวลา {{data.datestime | amDateFormat:'kk:mm' }} น.</p>
+        <ion-option-button class="button-energized" ng-click="editClass(data)">Edit</ion-option-button>
+        <ion-option-button class="button-assertive" ng-click="deleteClass(data)">Delete</ion-option-button>
+      </ion-item>
+    </ion-list>
+
+<!--      <div class = "card" ng-if="datas === undefined" class="no-results">
+         <p style="padding: 10px">No Class Here</p>
+    </div> -->
+	</ion-content>
+
+
+</ion-view>

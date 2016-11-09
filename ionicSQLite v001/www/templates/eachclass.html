@@ -1,0 +1,75 @@
+<ion-view view-title="เช็คชื่อเข้าเรียน">
+	<ion-nav-buttons side="left">
+	 	<button class="button button-clear" ng-click="goClassAttend()"><i class="icon ion-arrow-left-c" ></i></button>
+	</ion-nav-buttons>
+	<ion-nav-buttons side="right">
+        <div ng-show = "alldatas.length">
+            <button class="button button-icon icon ion-ios-search" ng-click="showFilterBar()"></button>
+        </div>
+<!--         <button class="button icon-left ion-plus-round" ng-click="showDatePicker()">
+        </button> -->
+  	</ion-nav-buttons>
+
+<!--   <ion-content class="padding"> -->
+    <ion-content padding="false" overflow-scroll="false">
+      <ion-refresher pulling-icon="ion-arrow-down-b" on-refresh="refreshItemsAll()">
+      </ion-refresher>  
+  
+    <div class = "card no-results" ng-hide="alldatas.length">
+      <div class="item item-divider">
+         <h2"><b>No Student</b></h2>
+      </div>
+        <div class="item item-text-wrap">
+          <h3 style="padding-left: 10px">กรุณาเพิ่มรายชื่อนักศึกษาก่อนเช็คชื่อเข้าชั้นเรียน</h3>
+          <br/>
+          <h3 style="padding-left: 10px">ไปที่ <b class = "custom-icon2">Tab Students</b> และคลิกที่ปุ่ม
+          <i class="icon ion-plus-round custom-icon1"></i> เพื่อเพิ่มรายชื่อนักศึกษา
+          </h3> 
+        </div>
+    </div>
+    <ion-list >
+      <ion-item class="item-avatar-left item-button-right no-padding" ng-repeat="data in alldatas" type="item-text-wrap">
+        
+        <img ng-if="data.stdgender === 'นางสาว'" src="img/girl.png">
+        <img ng-if="data.stdgender === 'นาย'" src="img/boy.png">
+        <!-- <img src="img/contact02.ico"> -->
+        <p>รหัส {{data.stdid}}</p>
+        <p>{{data.stdgender}} {{data.stdname}} {{data.stdlastname}}</p>
+        <button class="button bottom-right button-calm" style="float: bottom;" ng-click="goStatus($event,data.id)" ng-if="data.status === 'มาเรียน'" style="background-color:green !important;" >
+            {{data.status}}
+        </button>
+         <button class="button bottom-right button-calm" style="float: bottom;" ng-click="goStatus($event,data.id)" ng-if="data.status === 'ขาดเรียน'" style="background-color:red !important;" >
+            {{data.status}}
+        </button>
+        <button class="button bottom-right button-calm" style="float: bottom;" ng-click="goStatus($event,data.id)" ng-if="data.status === 'ลา'" style="background-color:yellow !important;" >
+            {{data.status}}
+        </button>
+        <button class="button bottom-right button-calm" style="float: bottom;" ng-click="goStatus($event,data.id)" ng-if="data.status === 'ป่วย'" style="background-color:gray !important;" >
+            {{data.status}}
+        </button>
+        <button class="button bottom-right button-calm" style="float: bottom;" ng-click="goStatus($event,data.id)" ng-if="data.status === 'สาย'" style="background-color:gray !important;" >
+            {{data.status}}
+        </button>
+        <button class="button bottom-right button-calm" style="float: bottom;" ng-click="goStatus($event,data.id)" ng-if="data.status == null" style="background-color:blue !important;" >
+            สถานะ
+        </button>
+<!--         <div class="buttons">
+          <button class="button button-energized">
+            <i class="icon ion-android-locate"></i>
+          </button>
+          <button class="button button-dark">
+            <i class="icon ion-android-arrow-forward"></i>
+          </button>
+        </div> -->
+
+<!--         <ion-option-button class="button-energized" ng-click="editStudent(data)">Edit</ion-option-button>
+        <ion-option-button class="button-assertive" ng-click="deleteStudent(data)">Delete</ion-option-button> -->
+      </ion-item>
+    </ion-list>
+
+<!--      <div class = "card" ng-if="alldatas == undefined" class="no-results">
+         <p style="padding: 10px">No Students Here.</p>
+  </ion-content> -->
+
+
+</ion-view>
